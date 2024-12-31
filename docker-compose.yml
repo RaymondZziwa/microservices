@@ -6,10 +6,10 @@ services:
     image: mysql:latest
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: '123'
       MYSQL_DATABASE: microservices
       MYSQL_USER: root
-      MYSQL_PASSWORD: '123'
+      MYSQL_PASSWORD: ''
     ports:
       - "3306:3306"
     volumes:
