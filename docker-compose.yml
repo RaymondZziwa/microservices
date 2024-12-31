@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: ''
       MYSQL_DATABASE: microservices
       MYSQL_USER: root
-      MYSQL_PASSWORD: ''
+      MYSQL_PASSWORD: '123'
     ports:
       - "3306:3306"
     volumes:
@@ -34,7 +34,7 @@ services:
     environment:
       DATABASE_HOST: mysql
       DATABASE_USER: root
-      DATABASE_PASSWORD: ''
+      DATABASE_PASSWORD: '123'
       DATABASE_NAME: microservices
       NATS_URL: nats://nats:4222
     ports:
@@ -49,7 +49,7 @@ services:
     environment:
       DATABASE_HOST: mysql
       DATABASE_USER: root
-      DATABASE_PASSWORD: ''
+      DATABASE_PASSWORD: '123'
       DATABASE_NAME: microservices
       NATS_URL: nats://nats:4222
     networks:
@@ -62,7 +62,7 @@ services:
     environment:
       DATABASE_HOST: mysql
       DATABASE_USER: root
-      DATABASE_PASSWORD: ''
+      DATABASE_PASSWORD: '123'
       DATABASE_NAME: microservices
       NATS_URL: nats://nats:4222
     volumes:
