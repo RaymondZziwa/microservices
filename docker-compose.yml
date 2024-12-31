@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # MySQL Service
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: microservices
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ''
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - my_network
+
+  # NATS Service
+  nats:
+    image: nats:latest
+    container_name: nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    networks:
+      - my_network
+
+  # Gateway Service
+  gateway:
+    build: ./api-gateway
+    container_name: gateway
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_USER: root
+      DATABASE_PASSWORD: ''
+      DATABASE_NAME: microservices
+      NATS_URL: nats://nats:4222
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+
+  # Reader Microservice
+  reader-mgt:
+    build: ./reader-mgt
+    container_name: reader-service
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_USER: root
+      DATABASE_PASSWORD: ''
+      DATABASE_NAME: microservices
+      NATS_URL: nats://nats:4222
+    networks:
+      - my_network
+
+  # Article Microservice
+  article-mgt:
+    build: ./article-mgt
+    container_name: article-service
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_USER: root
+      DATABASE_PASSWORD: ''
+      DATABASE_NAME: microservices
+      NATS_URL: nats://nats:4222
+    volumes:
+      - ./article-mgt/src:/usr/src/app/src
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

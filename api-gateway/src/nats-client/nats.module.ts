@@ -8,7 +8,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'NATS_SERVICE',
         transport: Transport.NATS,
         options: {
-          servers: ['nats://localhost:4222'],
+          servers: ['nats://nats-server:4222'],
+          //servers: ['nats://localhost:4222'],
         },
       },
     ]),
@@ -20,7 +21,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'NATS_SERVICE',
         transport: Transport.NATS,
         options: {
-          servers: ['nats://localhost:4222'],
+          //servers: ['nats://localhost:4222'],
+          servers: ['nats://nats-server:4222'],
         },
       },
     ]),

@@ -12,7 +12,7 @@ export class AppController {
     return this.natsClient.send({ cmd: 'SAVE_READER' }, req.body);
   }
 
-  @Get('get-all-readers')
+  @Get('/get-all-readers')
   getReaders(@Req() req: Request) {
     return this.natsClient.send({ cmd: 'GET_ALL_READERS' }, req.body);
   }
@@ -28,7 +28,7 @@ export class AppController {
     return this.natsClient.send({ cmd: 'GET_ALL_ARTICLES' }, req.body);
   }
 
-  @Post('delete-article')
+  @Post('/delete-article')
   deleteArticle(@Req() req: Request) {
     return this.natsClient.send({ cmd: 'DELETE_ARTICLE' }, req.body);
   }
