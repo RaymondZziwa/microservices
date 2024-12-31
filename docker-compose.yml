@@ -65,8 +65,6 @@ services:
       DATABASE_PASSWORD: '123'
       DATABASE_NAME: microservices
       NATS_URL: nats://nats:4222
-    volumes:
-      - ./article-mgt/src:/usr/src/app/src
     networks:
       - my_network
 
